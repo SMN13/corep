@@ -116,7 +116,7 @@ looker.plugins.visualizations.add({
           var style = 'background-color:' + backgroundColor + ';' +
             'border: 1px solid black;' +
             'font-weight:' + fontWeight + ';' +
-            'font-size: 11px;' +
+            'font-size:' + fontSize + ';' +
             'font-family:' + fontFamily + ';' +
             'mso-number-format: "\ \@";' ;
           cell.setAttribute('style', style);
