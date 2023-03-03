@@ -133,8 +133,16 @@ looker.plugins.visualizations.add({
           console.log("font-size :"+tagName);
           //window.location.href = uri + base64(format(template, ctx))
           const downloadUrl = uri + base64(xl);
-          console.log(downloadUrl); // Prints the download URL to the console
-          window.location.href = downloadUrl;
+          //console.log(downloadUrl); // Prints the download URL to the console
+          const newTab = window.open(downloadUrl, '_blank');
+            newTab.onload = function() {
+  // Trigger a click event on a download link in the new tab
+  const downloadLink = newTab.document.createElement('a');
+  downloadLink.href = downloadUrl;
+  downloadLink.download = 'data.xlsx';
+  downloadLink.click();
+};
+           
         });
       },
   
