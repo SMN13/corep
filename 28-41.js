@@ -106,13 +106,13 @@ looker.plugins.visualizations.add({
       var table = document.querySelector('table');  
       table.style.type = 'text/css';
       table.style.innerHTML = 'table-cell, table-header { background-color: #eee; border: 1px solid black; border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;mso-number-format: "\\\@"; }';
-    //   var rows = table.rows;
-    //   for (var i = 0; i < rows.length; i++) {
-    //     var cells = rows[i].cells;
-    //     for (var j = 0; j < cells.length; j++) {
-    //       var cell = cells[j];
-    //       cell.setAttribute('style', style);
-    //     }
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].cells;
+        for (var j = 0; j < cells.length; j++) {
+          var cell = cells[j];
+          cell.setAttribute('style', style);
+        }
       }
       
       const XLSX = document.createElement('script');
