@@ -24,16 +24,16 @@ looker.plugins.visualizations.add({
           margin: auto;
         }
         .table-header {
-          background-color: #eee;
-          border: 1px solid black;
-          border-collapse: collapse;
-          font-weight: normal;
-          font-family: 'Verdana';
-          font-size: 11px;
-          align-items: center;
-          text-align: center;
-          margin: auto;
-          width: 90px;
+          // background-color: #eee;
+          // border: 1px solid black;
+          // border-collapse: collapse;
+          // font-weight: normal;
+          // font-family: 'Verdana';
+          // font-size: 11px;
+          // align-items: center;
+          // text-align: center;
+          // margin: auto;
+          // width: 90px;
         }
         .table-cell {
           padding: 5px;
@@ -156,16 +156,16 @@ looker.plugins.visualizations.add({
           margin: auto;
         }
         .table-header {
-          background-color: #eee;
-          border: 1px solid black;
-          border-collapse: collapse;
-          font-weight: normal;
-          font-family: 'Verdana';
-          font-size: 11px;
-          align-items: center;
-          text-align: center;
-          margin: auto;
-          width: 90px;
+          // background-color: #eee;
+          // border: 1px solid black;
+          // border-collapse: collapse;
+          // font-weight: normal;
+          // font-family: 'Verdana';
+          // font-size: 11px;
+          // align-items: center;
+          // text-align: center;
+          // margin: auto;
+          // width: 90px;
         }
         .table-cell {
           padding: 5px;
