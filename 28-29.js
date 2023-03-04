@@ -83,38 +83,26 @@ looker.plugins.visualizations.add({
 
   },
   
-  downloadExcelFile: function (data, filename) {
-    // Create a new SheetJS workbook object
-    downloadButton.innerHTML = 'Download as Excel';
-    var workbook = XLSX.utils.book_new();
-  
-    // Convert the data to a SheetJS worksheet object
-    var worksheet = XLSX.utils.json_to_sheet(data);
-  
-    // Add styling to the worksheet
-    for (var cellAddress in worksheet) {
-      if (cellAddress[0] === '!') continue; // Skip non-cell elements
-      var cell = worksheet[cellAddress];
-      cell.s = { // "s" stands for "style"
-        font: { bold: true }, // Example styling: bold font
-      };
-    }
-  
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-  
-    // Convert the workbook to a binary Excel file
-    var binaryFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-  
-    // Create a download link
-    var link = document.createElement('a');
-    link.href = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + btoa(binaryFile);
-    link.download = filename;
-  
-    // Append the link to the document and trigger the download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  exceller: function () { 
+        var uri = 'data:application/vnd.ms-excel;base64,',
+          template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+          base64 = function(s) {
+            return window.btoa(unescape(encodeURIComponent(s)))
+          },
+          format = function(s, c) {
+            return s.replace(/{(\w+)}/g, function(m, p) {
+              return c[p];
+            })
+          }
+        var toExcel = document.getElementById("toExcel").innerHTML;
+        var ctx = {
+          worksheet: name || '',
+          table: toExcel
+        };
+        var link = document.createElement("a");
+        link.download = "export.xls";
+        link.href = uri + base64(format(template, ctx))
+        link.click(); 
   },
   
 
@@ -282,8 +270,9 @@ looker.plugins.visualizations.add({
     }
     generatedHTML += "</table>";
 
-    this._container.innerHTML = generatedHTML;
-    downloadExcelFile('table', 'myData.xlsx'); 
+    this._container.innerHTML = generatedHTML; 
+    this.exceller();
+
     done();
   }
 });
