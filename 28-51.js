@@ -15,66 +15,66 @@ looker.plugins.visualizations.add({
   create: function (element, config) {
     console.log(config);
     // Insert a <style> tag with some styles we'll use later.
-    // element.innerHTML = `
-    //   <style>
-    //     .table {
-    //       font-size: ${config.font_size}px;
-    //       border: 1px solid black;
-    //       border-collapse: collapse;
-    //       margin: auto;
-    //     }
-    //     .table-header {
-    //       background-color: #eee;
-    //       border: 1px solid black;
-    //       border-collapse: collapse;
-    //       font-weight: normal;
-    //       font-family: 'Verdana';
-    //       font-size: 11px;
-    //       align-items: center;
-    //       text-align: center;
-    //       margin: auto;
-    //       width: 90px;
-    //     }
-    //     .table-cell {
-    //       padding: 5px;
-    //       border-bottom: 1px solid #ccc;
-    //       border: 1px solid black;
-    //       border-collapse: collapse;
-    //       font-family: 'Verdana';
-    //       font-size: 11px;
-    //       align-items: center;
-    //       text-align: center;
-    //       margin: auto;
-    //       width: 90px;
-    //     }
-    //     .thead{
-    //       position: sticky;
-    //       top: 0px; 
-    //       z-index: 3;
-    //     }
-    //   //   th:before {
-    //   //     content: '';
-    //   //     top: 0;
-    //   //     left: 0;
-    //   //     border-top: 1px solid black;
-    //   //     position: absolute;
-    //   //     width: 100%;
-    //   // }
-    //   //  th:after {
-    //   //   content:''; 
-    //   //   position:absolute; 
-    //   //   left: 0; 
-    //   //   bottom: 0; 
-    //   //   width:100%; 
-    //   //   border-bottom: 1px solid rgba(0,0,0,0.12);
-    //   // }
-    //   .div{
-    //     overflow-y: auto;
-    //     height: calc(100vh - 100px);
-    //     margin-bottom: 100px;
-    //   }
-    //   </style>
-    // `;
+    element.innerHTML = `
+      <style>
+        .table {
+          font-size: ${config.font_size}px;
+          border: 1px solid black;
+          border-collapse: collapse;
+          margin: auto;
+        }
+        .table-header {
+          background-color: #eee;
+          border: 1px solid black;
+          border-collapse: collapse;
+          font-weight: normal;
+          font-family: 'Verdana';
+          font-size: 11px;
+          align-items: center;
+          text-align: center;
+          margin: auto;
+          width: 90px;
+        }
+        .table-cell {
+          padding: 5px;
+          border-bottom: 1px solid #ccc;
+          border: 1px solid black;
+          border-collapse: collapse;
+          font-family: 'Verdana';
+          font-size: 11px;
+          align-items: center;
+          text-align: center;
+          margin: auto;
+          width: 90px;
+        }
+        .thead{
+          position: sticky;
+          top: 0px; 
+          z-index: 3;
+        }
+        th:before {
+          content: '';
+          top: 0;
+          left: 0;
+          border-top: 1px solid black;
+          position: absolute;
+          width: 100%;
+      }
+       th:after {
+        content:''; 
+        position:absolute; 
+        left: 0; 
+        bottom: 0; 
+        width:100%; 
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+      }
+      .div{
+        overflow-y: auto;
+        height: calc(100vh - 100px);
+        margin-bottom: 100px;
+      }
+      </style>
+    `;
 
     // Create a container element to let us center the text.
     const div = document.createElement("div");
@@ -82,7 +82,7 @@ looker.plugins.visualizations.add({
     this._container = element.appendChild(div);
 
   },
- 
+
   addDownloadButtonListener: function () {
     const downloadButton = this._container.appendChild(document.createElement('button'));
     downloadButton.innerHTML = 'Download as Excel';
@@ -101,29 +101,20 @@ looker.plugins.visualizations.add({
             return cellHtmlWithStyle;
           });
         };
-  
-        var table = document.querySelector('table');
-        table.style.border = '1px solid black';
-        table.style.fontSize = '11px';
-        var rows = table.rows;
-        for (var i = 0; i < rows.length; i++) {
-          var cells = rows[i].cells;
-          for (var j = 0; j < cells.length; j++) {
-            var cell = cells[j];
-            var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-            var fontWeight = window.getComputedStyle(cell).fontWeight;
-            var fontFamily = window.getComputedStyle(cell).fontFamily;
-            var fontSize = window.getComputedStyle(cell).fontSize;
-            var style = 'background-color:' + backgroundColor + ';' +
-              'border: 1px solid black;' +
-              'font-weight:' + fontWeight + ';' +
-              'font-size: 11pt;' +
-              'font-family:' + fontFamily + ';' +
-              'mso-number-format: "\ \@";' ;
-            cell.setAttribute('style', style);
-          }
+
+      // Create a new style element and set the default styles
+      var table = document.querySelector('table');  
+      table.style.type = 'text/css';
+      table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].cells;
+        for (var j = 0; j < cells.length; j++) {
+          var cell = cells[j];
+        //   cell.setAttribute('style', style);
         }
-      
+      }
+
       const XLSX = document.createElement('script');
       XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
       document.head.appendChild(XLSX);
@@ -137,7 +128,7 @@ looker.plugins.visualizations.add({
     });
   },
 
-  
+
 
 
   // Render in response to the data or settings changing
@@ -197,22 +188,22 @@ looker.plugins.visualizations.add({
           top: 0px; 
           z-index: 3;
         }
-      //   th:before {
-      //     content: '';
-      //     top: 0;
-      //     left: 0;
-      //     border-top: 1px solid black;
-      //     position: absolute;
-      //     width: 100%;
-      // }
-      //   th:after {
-      //   content:''; 
-      //   position:absolute; 
-      //   left: 0; 
-      //   bottom: 0; 
-      //   width:100%; 
-      //   border-bottom: 1px solid rgba(0,0,0,0.12);
-      // }
+        th:before {
+          content: '';
+          top: 0;
+          left: 0;
+          border-top: 1px solid black;
+          position: absolute;
+          width: 100%;
+      }
+        th:after {
+        content:''; 
+        position:absolute; 
+        left: 0; 
+        bottom: 0; 
+        width:100%; 
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+      }
       .div{
         overflow-y: auto;
         height: calc(100vh - 100px);
@@ -224,7 +215,7 @@ looker.plugins.visualizations.add({
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' colspan='15' style='height:25px;'><b>ORIGINAL EXPOSURES</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Value adjustments and provisions</th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Exposures deducted from CET 1 or Additional Tier 1 items</th>`;
@@ -234,9 +225,9 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Group or individual</th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Transactions where there is an exposure to underlying assets</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;>Group or individual</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;>Transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'><b>Total original exposure</b></th>`;
     generatedHTML += `<th class='table-header' colspan='14' style="height:25px;"><hr style="margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
