@@ -103,27 +103,22 @@ looker.plugins.visualizations.add({
         };
   
       // Create a new style element and set the default styles
-      var table = document.querySelector('table');  
-      // table.style.type = 'text/css';
-      // table.style.innerHTML = 'table-cell, table-header { background-color: #eee; border: 1px solid black; border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;mso-number-format: "\\\@"; }';
-      var rows = table.rows;
-      for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].cells;
-        for (var j = 0; j < cells.length; j++) {
-          var cell = cells[j];
-          var backgroundColor = '#eee';
-          var fontWeight = 'bold';
-          var fontFamily = 'Verdana';
-          var fontSize = '11px';
-          var style = 'background-color:' + backgroundColor + ';' +
-            'border: 1px solid black;' +
-            'font-weight:' + fontWeight + ';' +
-            'font-size:' + fontSize + ';' +
-            'font-family:' + fontFamily + ';' +
-            'mso-number-format: "\ \@";' ;
-          cell.setAttribute('style', style);//cell.setAttribute('style', style);
-        }
-      }
+      // var table = document.querySelector('table');  
+      // // table.style.type = 'text/css';
+      // // table.style.innerHTML = 'table-cell, table-header { background-color: #eee; border: 1px solid black; border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;mso-number-format: "\\\@"; }';
+      // var rows = table.rows;
+       // Get a reference to the table element
+var table = document.getElementById("table");
+
+// Get the computed style of the table
+var tableStyle = window.getComputedStyle(table);
+
+// Create a new style element and set its content to the table style
+var styleElement = document.createElement("style");
+styleElement.textContent = "#table {" + tableStyle.cssText + "}";
+
+// Add the style element to the document
+document.head.appendChild(styleElement);
       
       const XLSX = document.createElement('script');
       XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
