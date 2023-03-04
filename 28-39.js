@@ -111,7 +111,7 @@ looker.plugins.visualizations.add({
         var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
           var cell = cells[j];
-        //   cell.setAttribute('style', style);
+        cell.setAttribute('style', style);
         }
       }
       
