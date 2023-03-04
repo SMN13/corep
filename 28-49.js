@@ -15,66 +15,66 @@ looker.plugins.visualizations.add({
   create: function (element, config) {
     console.log(config);
     // Insert a <style> tag with some styles we'll use later.
-    element.innerHTML = `
-      <style>
-        .table {
-          font-size: ${config.font_size}px;
-          border: 1px solid black;
-          border-collapse: collapse;
-          margin: auto;
-        }
-        .table-header {
-          background-color: #eee;
-          border: 1px solid black;
-          border-collapse: collapse;
-          font-weight: normal;
-          font-family: 'Verdana';
-          font-size: 11px;
-          align-items: center;
-          text-align: center;
-          margin: auto;
-          width: 90px;
-        }
-        .table-cell {
-          padding: 5px;
-          border-bottom: 1px solid #ccc;
-          border: 1px solid black;
-          border-collapse: collapse;
-          font-family: 'Verdana';
-          font-size: 11px;
-          align-items: center;
-          text-align: center;
-          margin: auto;
-          width: 90px;
-        }
-        .thead{
-          position: sticky;
-          top: 0px; 
-          z-index: 3;
-        }
-      //   th:before {
-      //     content: '';
-      //     top: 0;
-      //     left: 0;
-      //     border-top: 1px solid black;
-      //     position: absolute;
-      //     width: 100%;
-      // }
-      //  th:after {
-      //   content:''; 
-      //   position:absolute; 
-      //   left: 0; 
-      //   bottom: 0; 
-      //   width:100%; 
-      //   border-bottom: 1px solid rgba(0,0,0,0.12);
-      // }
-      .div{
-        overflow-y: auto;
-        height: calc(100vh - 100px);
-        margin-bottom: 100px;
-      }
-      </style>
-    `;
+    // element.innerHTML = `
+    //   <style>
+    //     .table {
+    //       font-size: ${config.font_size}px;
+    //       border: 1px solid black;
+    //       border-collapse: collapse;
+    //       margin: auto;
+    //     }
+    //     .table-header {
+    //       background-color: #eee;
+    //       border: 1px solid black;
+    //       border-collapse: collapse;
+    //       font-weight: normal;
+    //       font-family: 'Verdana';
+    //       font-size: 11px;
+    //       align-items: center;
+    //       text-align: center;
+    //       margin: auto;
+    //       width: 90px;
+    //     }
+    //     .table-cell {
+    //       padding: 5px;
+    //       border-bottom: 1px solid #ccc;
+    //       border: 1px solid black;
+    //       border-collapse: collapse;
+    //       font-family: 'Verdana';
+    //       font-size: 11px;
+    //       align-items: center;
+    //       text-align: center;
+    //       margin: auto;
+    //       width: 90px;
+    //     }
+    //     .thead{
+    //       position: sticky;
+    //       top: 0px; 
+    //       z-index: 3;
+    //     }
+    //   //   th:before {
+    //   //     content: '';
+    //   //     top: 0;
+    //   //     left: 0;
+    //   //     border-top: 1px solid black;
+    //   //     position: absolute;
+    //   //     width: 100%;
+    //   // }
+    //   //  th:after {
+    //   //   content:''; 
+    //   //   position:absolute; 
+    //   //   left: 0; 
+    //   //   bottom: 0; 
+    //   //   width:100%; 
+    //   //   border-bottom: 1px solid rgba(0,0,0,0.12);
+    //   // }
+    //   .div{
+    //     overflow-y: auto;
+    //     height: calc(100vh - 100px);
+    //     margin-bottom: 100px;
+    //   }
+    //   </style>
+    // `;
 
     // Create a container element to let us center the text.
     const div = document.createElement("div");
