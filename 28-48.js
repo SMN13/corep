@@ -52,14 +52,14 @@ looker.plugins.visualizations.add({
           top: 0px; 
           z-index: 3;
         }
-        th:before {
-          content: '';
-          top: 0;
-          left: 0;
-          border-top: 1px solid black;
-          position: absolute;
-          width: 100%;
-      }
+      //   th:before {
+      //     content: '';
+      //     top: 0;
+      //     left: 0;
+      //     border-top: 1px solid black;
+      //     position: absolute;
+      //     width: 100%;
+      // }
       //  th:after {
       //   content:''; 
       //   position:absolute; 
@@ -197,22 +197,22 @@ looker.plugins.visualizations.add({
           top: 0px; 
           z-index: 3;
         }
-        th:before {
-          content: '';
-          top: 0;
-          left: 0;
-          border-top: 1px solid black;
-          position: absolute;
-          width: 100%;
-      }
-        th:after {
-        content:''; 
-        position:absolute; 
-        left: 0; 
-        bottom: 0; 
-        width:100%; 
-        border-bottom: 1px solid rgba(0,0,0,0.12);
-      }
+      //   th:before {
+      //     content: '';
+      //     top: 0;
+      //     left: 0;
+      //     border-top: 1px solid black;
+      //     position: absolute;
+      //     width: 100%;
+      // }
+      //   th:after {
+      //   content:''; 
+      //   position:absolute; 
+      //   left: 0; 
+      //   bottom: 0; 
+      //   width:100%; 
+      //   border-bottom: 1px solid rgba(0,0,0,0.12);
+      // }
       .div{
         overflow-y: auto;
         height: calc(100vh - 100px);
