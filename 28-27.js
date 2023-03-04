@@ -83,34 +83,39 @@ looker.plugins.visualizations.add({
 
   },
   
-  addDownloadButtonListener: function (tableId, filename) {
-    var table = document.getElementById(tableId);
-    table.style.border = '1px solid black';
-    table.style.fontSize = '11px';
-    // Create a CSV string from the table HTML
-    var csv = [];
-    for (var i = 0; i < table.rows.length; i++) {
-      var row = [];
-      for (var j = 0; j < table.rows[i].cells.length; j++) {
-        var cell = table.rows[i].cells[j];
-        row.push('"' + cell.innerText.replace(/"/g, '""') + '"');
-      }
-      csv.push(row.join(','));
+  downloadExcelFile: function (data, filename) {
+    // Create a new SheetJS workbook object
+    var workbook = XLSX.utils.book_new();
+  
+    // Convert the data to a SheetJS worksheet object
+    var worksheet = XLSX.utils.json_to_sheet(data);
+  
+    // Add styling to the worksheet
+    for (var cellAddress in worksheet) {
+      if (cellAddress[0] === '!') continue; // Skip non-cell elements
+      var cell = worksheet[cellAddress];
+      cell.s = { // "s" stands for "style"
+        font: { bold: true }, // Example styling: bold font
+      };
     }
-    csv = csv.join('\n');
+  
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+  
+    // Convert the workbook to a binary Excel file
+    var binaryFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
   
     // Create a download link
     var link = document.createElement('a');
-    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    link.href = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + btoa(binaryFile);
     link.download = filename;
   
     // Append the link to the document and trigger the download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    //window.open(downloadUrl, "_blank");
-    
   },
+  
 
 
   // Render in response to the data or settings changing
@@ -277,7 +282,7 @@ looker.plugins.visualizations.add({
     generatedHTML += "</table>";
 
     this._container.innerHTML = generatedHTML;
-    this.addDownloadButtonListener('table', 'myTable.csv'); 
+    downloadExcelFile('table', 'myData.xlsx'); 
     done();
   }
 });
