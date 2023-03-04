@@ -104,23 +104,22 @@ looker.plugins.visualizations.add({
       var table = document.querySelector('table');
       table.style.border = '1px solid black';
       table.style.fontSize = '11px';
-   //     table.style.fontFamily = 'Verdana';
-//       var rows = table.rows;
-//       for (var i = 0; i < rows.length; i++) {
-//         var cells = rows[i].cells;
-//         for (var j = 0; j < cells.length; j++) {
-//           var cell = cells[j];
-//           var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-//           var fontWeight = window.getComputedStyle(cell).fontWeight;
-//           var fontFamily = window.getComputedStyle(cell).fontFamily;
-//           var fontSize = window.getComputedStyle(cell).fontSize;
-//           var style = 'background-color:' + backgroundColor + ';' +
-//             'border: 1px solid black;' +
-//             'font-weight:' + fontWeight + ';' +
-//             'font-size: 11pt;' +
-//             'font-family:' + fontFamily + ';' +
-//             'mso-number-format: "\ \@";' ;
-//           cell.setAttribute('style', style);
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].cells;
+        for (var j = 0; j < cells.length; j++) {
+          var cell = cells[j];
+          var backgroundColor = window.getComputedStyle(cell).backgroundColor;
+          var fontWeight = window.getComputedStyle(cell).fontWeight;
+          var fontFamily = window.getComputedStyle(cell).fontFamily;
+          var fontSize = window.getComputedStyle(cell).fontSize;
+          var style = 'background-color:' + backgroundColor + ';' +
+            'border: 1px solid black;' +
+            'font-weight:' + fontWeight + ';' +
+            'font-size: 11pt;' +
+            'font-family:' + fontFamily + ';' +
+            'mso-number-format: "\ \@";' ;
+          cell.setAttribute('style', style);
         }
       }
       
@@ -222,28 +221,28 @@ looker.plugins.visualizations.add({
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' colspan='3'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3'><b>COUNTERPARTY</b><hr style="margin: 0;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' colspan='15' style='height:25px;'><b>ORIGINAL EXPOSURES</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Value adjustments and provisions</th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Exposures deducted from CET 1 or Additional Tier 1 items</th>`;
-    generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value before application of exemptions and CRM </b><hr style="margin: 0;position: absolute;width: 25.37%;top: 83px;left: 2260px;background-color: black;height: 0.6px;"></th>`;
-    generatedHTML += `<th class='table-header' colspan='8'><b>ELIGIBLE CREDIT RISK MITIGATION (CRM) TECHNIQUES</b><hr style="height: 0.6px;top: 27px;position: absolute;left: 2603px;width: 23.85%;margin: 0;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value before application of exemptions and CRM </b><hr style="margin: 0;position: absolute;top: 83px;left: 2260px;background-color: black;height: 0.6px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='8'><b>ELIGIBLE CREDIT RISK MITIGATION (CRM) TECHNIQUES</b><hr style="height: 0.6px;top: 27px;position: absolute;left: 2603px;margin: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Amounts exempted</th>`;
-    generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='4'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4'>Code<hr style="margin: 0;height: 0.6px;position: absolute;left: 0;top: 177px;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='4'>Group or individual</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'>Transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'><b>Total original exposure</b></th>`;
-    generatedHTML += `<th class='table-header' colspan='14' style="height:25px;"><hr style="margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='14' style="height:25px;"><hr style="margin: 0;position: absolute;height: 0.6px;top: 55px;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'>(-) Funded credit protection other than substitution effect</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'>(-) Real estate</th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr>";
     generatedHTML += `<th class='table-header' colspan='1'></th>`;
-    generatedHTML += `<th class='table-header' colspan='6' style="height:25px;">Direct exposures<hr style="margin: 0;position: absolute;height: 0.6px;top: 82.5px;width: 36.16%;left: 442px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='6' style="height:25px;">Direct exposures<hr style="margin: 0;position: absolute;height: 0.6px;top: 82.5px;left: 442px;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' style="height:25px;">Indirect exposures</th>`;
     generatedHTML += `<th class='table-header' rowspan='3'>Additional exposures arising from transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += "</tr>";
@@ -252,18 +251,18 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='2'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 133.5px;background-color: black;left: 956px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;top: 133.5px;background-color: black;left: 956px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.49%;top: 133.5px;background-color: black;left: 1644.5px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;top: 133.5px;background-color: black;left: 1644.5px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><b>Total</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><i>Of which: Non-trading book</i></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>% of Tier 1 capital </th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>(-) Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>(-) Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>(-) Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3'>(-) Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3'>(-) Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;top: 133.5px;background-color: black;left: 3024.7px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><b>Total</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><i>Of which: Non-trading book</i></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'>% of Tier 1 capital</th>`;
