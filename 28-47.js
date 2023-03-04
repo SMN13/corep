@@ -60,14 +60,14 @@ looker.plugins.visualizations.add({
           position: absolute;
           width: 100%;
       }
-       th:after {
-        content:''; 
-        position:absolute; 
-        left: 0; 
-        bottom: 0; 
-        width:100%; 
-        border-bottom: 1px solid rgba(0,0,0,0.12);
-      }
+      //  th:after {
+      //   content:''; 
+      //   position:absolute; 
+      //   left: 0; 
+      //   bottom: 0; 
+      //   width:100%; 
+      //   border-bottom: 1px solid rgba(0,0,0,0.12);
+      // }
       .div{
         overflow-y: auto;
         height: calc(100vh - 100px);
@@ -102,23 +102,27 @@ looker.plugins.visualizations.add({
           });
         };
   
-      // Create a new style element and set the default styles
-      var table = document.querySelector('table');
-      table.style.border = '1px solid black';
-      table.style.fontSize = '11px';
-      table.style.fontFamily = 'Verdana'; 
-      var rows = table.rows;
-      for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].cells;
-        for (var j = 0; j < cells.length; j++) {
-          var cell = cells[j];
-          // var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-          // var fontWeight = window.getComputedStyle(cell).fontWeight;
-          // var fontFamily = window.getComputedStyle(cell).fontFamily;
-          var style = 'mso-number-format: "\ \@";' ;
-          cell.setAttribute('style', style);
+        var table = document.querySelector('table');
+        table.style.border = '1px solid black';
+        table.style.fontSize = '11px';
+        var rows = table.rows;
+        for (var i = 0; i < rows.length; i++) {
+          var cells = rows[i].cells;
+          for (var j = 0; j < cells.length; j++) {
+            var cell = cells[j];
+            var backgroundColor = window.getComputedStyle(cell).backgroundColor;
+            var fontWeight = window.getComputedStyle(cell).fontWeight;
+            var fontFamily = window.getComputedStyle(cell).fontFamily;
+            var fontSize = window.getComputedStyle(cell).fontSize;
+            var style = 'background-color:' + backgroundColor + ';' +
+              'border: 1px solid black;' +
+              'font-weight:' + fontWeight + ';' +
+              'font-size: 11pt;' +
+              'font-family:' + fontFamily + ';' +
+              'mso-number-format: "\ \@";' ;
+            cell.setAttribute('style', style);
+          }
         }
-      }
       
       const XLSX = document.createElement('script');
       XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
