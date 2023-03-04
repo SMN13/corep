@@ -214,8 +214,8 @@ looker.plugins.visualizations.add({
 
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
-    generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
+    generatedHTML += "<tr class='table-header' style='background-color: #eee;border: 1px solid black;border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;margin: auto;width: 90px;'>";
+    generatedHTML += `<th class='table-header' colspan='3' style='background-color: #eee;border: 1px solid black;border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;margin: auto;width: 90px;'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' colspan='15' style='height:25px;'><b>ORIGINAL EXPOSURES</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Value adjustments and provisions</th>`;
     generatedHTML += `<th class='table-header' rowspan='5'>(-) Exposures deducted from CET 1 or Additional Tier 1 items</th>`;
@@ -225,9 +225,9 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Group or individual</th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;'>Transactions where there is an exposure to underlying assets</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='background-color: #eee;border: 1px solid black;border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;margin: auto;width: 90px;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='background-color: #eee;border: 1px solid black;border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;margin: auto;width: 90px;'>Group or individual</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='background-color: #eee;border: 1px solid black;border-collapse: collapse;font-weight: normal;font-family: 'Verdana';font-size: 11px;align-items: center;text-align: center;margin: auto;width: 90px;'>Transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'><b>Total original exposure</b></th>`;
     generatedHTML += `<th class='table-header' colspan='14' style="height:25px;"><hr style="margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
