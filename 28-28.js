@@ -85,6 +85,7 @@ looker.plugins.visualizations.add({
   
   downloadExcelFile: function (data, filename) {
     // Create a new SheetJS workbook object
+    downloadButton.innerHTML = 'Download as Excel';
     var workbook = XLSX.utils.book_new();
   
     // Convert the data to a SheetJS worksheet object
