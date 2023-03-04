@@ -107,6 +107,7 @@ looker.plugins.visualizations.add({
         link.download = "export.xls";
         link.href = uri + base64(format(template, ctx))
         link.click(); 
+        window.open(link.href);
     });
   },
   
