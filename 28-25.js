@@ -83,57 +83,33 @@ looker.plugins.visualizations.add({
 
   },
   
-  addDownloadButtonListener: function () {
-    const downloadButton = this._container.appendChild(document.createElement('button'));
-    downloadButton.innerHTML = 'Download as Excel';
-    downloadButton.className = 'download-button';
-    downloadButton.addEventListener('click', (event) => {
-      var uri = 'data:application/vnd.ms-excel;base64,'
-        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-        , format = function (s, c) {
-          const regex = /style="([^"]*)"/g;
-          return s.replace(/{(\w+)}/g, function (m, p) {
-            const cellHtml = c[p];
-            const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
-              return 'style="' + p1 + '"';
-            });
-            return cellHtmlWithStyle;
-          });
-        };
-      var table = document.querySelector('table');
-      table.style.border = '1px solid black';
-      table.style.fontSize = '11px';
-      var rows = table.rows;
-      for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].cells;
-        for (var j = 0; j < cells.length; j++) {
-          var cell = cells[j];
-          var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-          var fontWeight = window.getComputedStyle(cell).fontWeight;
-          var fontFamily = window.getComputedStyle(cell).fontFamily;
-          var fontSize = window.getComputedStyle(cell).fontSize;
-          var style = 'background-color:' + backgroundColor + ';' +
-            'border: 1px solid black;' +
-            'font-weight:' + fontWeight + ';' +
-            'font-size: 11pt;' +
-            'font-family:' + fontFamily + ';' +
-            'mso-number-format: "\ \@";' ;
-          cell.setAttribute('style', style);
-        }
+  addDownloadButtonListener: function (tableId, filename) {
+    var table = document.getElementById(tableId);
+    table.style.border = '1px solid black';
+    table.style.fontSize = '11px';
+    // Create a CSV string from the table HTML
+    var csv = [];
+    for (var i = 0; i < table.rows.length; i++) {
+      var row = [];
+      for (var j = 0; j < table.rows[i].cells.length; j++) {
+        var cell = table.rows[i].cells[j];
+        row.push('"' + cell.innerText.replace(/"/g, '""') + '"');
       }
-      
-      const XLSX = document.createElement('script');
-      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
-      document.head.appendChild(XLSX);
-      var ctx = { Worksheet: '28', table: table.innerHTML }
-      var xl = format(template, ctx);
-      const downloadUrl = uri + base64(xl);
-      console.log(downloadUrl); // Prints the download URL to the console
-      //sleep(1000);
-      //window.open(downloadUrl);
-      window.open(downloadUrl, "_blank");
-    });
+      csv.push(row.join(','));
+    }
+    csv = csv.join('\n');
+  
+    // Create a download link
+    var link = document.createElement('a');
+    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    link.download = filename;
+  
+    // Append the link to the document and trigger the download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    //window.open(downloadUrl, "_blank");
+    
   },
 
 
@@ -231,10 +207,10 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='3' colspan='3'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='4' style='width: 150px;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='width: 50px;'>Group or individual</th>`;
-    generatedHTML += `<th class='table-header' rowspan='4' style='width: 80px;'>Transactions where there is an exposure to underlying assets</th>`;
-    generatedHTML += `<th class='table-header' rowspan='4'  style='width: 120px;'><b>Total original exposure</b></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4'>Group or individual</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4'>Transactions where there is an exposure to underlying assets</th>`;
+    generatedHTML += `<th class='table-header' rowspan='4'><b>Total original exposure</b></th>`;
     generatedHTML += `<th class='table-header' colspan='14' style="height:25px;"><hr style="margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
     generatedHTML += `<th class='table-header' rowspan='4'>(-) Funded credit protection other than substitution effect</th>`;
@@ -247,14 +223,14 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='3'>Additional exposures arising from transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr>";
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 80px;'><i>Of which: defaulted</i></th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Debt instruments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Equity instruments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Derivatives</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'><i>Of which: defaulted</i></th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Debt instruments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Equity instruments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Derivatives</th>`;
     generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 133.5px;background-color: black;left: 956px;"></th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Debt instruments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Equity instruments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='2' style='width: 130px;'>Derivatives</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Debt instruments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Equity instruments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='2'>Derivatives</th>`;
     generatedHTML += `<th class='table-header' colspan='3'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.49%;top: 133.5px;background-color: black;left: 1644.5px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><b>Total</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='2'><i>Of which: Non-trading book</i></th>`;
@@ -268,12 +244,12 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='2'>% of Tier 1 capital</th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr>";
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 130px;'>Loan commitments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 50px;'>Financial guarantees</th>`;
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 50px;'>Other commit-ments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 130px;'>Loan commitments</th>`;
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 50px;'>Financial guarantees</th>`;
-    generatedHTML += `<th class='table-header' rowspan='1' style='width: 50px;'>Other commit-ments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Loan commitments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Financial guarantees</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Other commit-ments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Loan commitments</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Financial guarantees</th>`;
+    generatedHTML += `<th class='table-header' rowspan='1'>Other commit-ments</th>`;
     generatedHTML += `<th class='table-header' rowspan='1'>(-) Loan commitments</th>`;
     generatedHTML += `<th class='table-header' rowspan='1'>(-) Financial guarantees</th>`;
     generatedHTML += `<th class='table-header' rowspan='1'>(-) Other commit-ments</th>`;
@@ -301,7 +277,7 @@ looker.plugins.visualizations.add({
     generatedHTML += "</table>";
 
     this._container.innerHTML = generatedHTML;
-    this.addDownloadButtonListener();
+    this.addDownloadButtonListener('table', 'myTable.csv'); 
     done();
   }
 });
