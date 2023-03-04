@@ -118,10 +118,7 @@ looker.plugins.visualizations.add({
           cell.setAttribute('style', style);
         }
       }
-      
-      const XLSX = document.createElement('script');
-      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
-      document.head.appendChild(XLSX);
+       
       var ctx = { Worksheet: '28', table: table.innerHTML }
       var xl = format(template, ctx);
       const downloadUrl = uri + base64(xl);
