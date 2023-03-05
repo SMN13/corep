@@ -276,7 +276,7 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='1' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Financial guarantees</th>`;
     generatedHTML += `<th class='table-header' rowspan='1' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Other commit-ments</th>`;
     generatedHTML += "</tr>";
-    generatedHTML += "</table>";
+
 
 
     const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350',];
@@ -296,8 +296,7 @@ looker.plugins.visualizations.add({
       }
       generatedHTML += "</tr>";
     }
-   
-    generatedHTML += "</p>";
+    generatedHTML += "</table>"; 
     this._container.innerHTML = generatedHTML; 
     this.addDownloadButtonListener();
 
