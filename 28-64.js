@@ -279,7 +279,7 @@ looker.plugins.visualizations.add({
     // First row is the header
     generatedHTML += "<tr class='table-header'>";
     for (let i=0;i<header.length;i++) {
-      generatedHTML += `<th class='table-header'  style='border: 1px solid black;font-size: 11px;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
+      generatedHTML += `<th class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
     }
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
