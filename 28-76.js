@@ -216,7 +216,7 @@ looker.plugins.visualizations.add({
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header' >";
     generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
-    generatedHTML += `<th class='table-header' colspan='15' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>ORIGINAL EXPOSURES</b></th>`;
+    generatedHTML += `<th class='table-header' colspan='15' style='height:25px;' ><b>ORIGINAL EXPOSURES</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='5' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Value adjustments and provisions</th>`;
     generatedHTML += `<th class='table-header' rowspan='5' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Exposures deducted from CET 1 or Additional Tier 1 items</th>`;
     generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value before application of exemptions and CRM </b><hr style="margin: 0;position: absolute;width: 25.37%;top: 83px;left: 2260px;background-color: black;height: 0.6px;"></th>`;
@@ -236,8 +236,8 @@ looker.plugins.visualizations.add({
     generatedHTML += "</tr>";
     generatedHTML += "<tr>";
     generatedHTML += `<th class='table-header' colspan='1'></th>`;
-    generatedHTML += `<th class='table-header' colspan='6' style="height:25px;">Direct exposures<hr style="margin: 0;position: absolute;height: 0.6px;top: 82.5px;width: 36.16%;left: 442px;background-color: black;"></th>`;
-    generatedHTML += `<th class='table-header' colspan='6' style="height:25px;" style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Indirect exposures</th>`;
+    generatedHTML += `<th class='table-header' colspan='6' style='height:25px;border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Direct exposures<hr style="margin: 0;position: absolute;height: 0.6px;top: 82.5px;width: 36.16%;left: 442px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='6' style='height:25px;border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Indirect exposures</th>`;
     generatedHTML += `<th class='table-header' rowspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Additional exposures arising from transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr>";
