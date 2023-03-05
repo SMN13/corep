@@ -245,7 +245,7 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 133.5px;background-color: black;left: 956px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 133.5px;background-color: black;left: 956px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Derivatives</th>`;
