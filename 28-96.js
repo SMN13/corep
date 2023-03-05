@@ -103,10 +103,10 @@ looker.plugins.visualizations.add({
         };
 
       // Create a new style element and set the default styles
-      var table = document.querySelector('table');  
-      table.style.type = 'text/css';
-      table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
-      var rows = table.rows;
+      var table = document.querySelector('table1');  
+      // table.style.type = 'text/css';
+      // table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
+      // var rows = table.rows;
       for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
@@ -212,11 +212,12 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
+    generatedHTML += "<p class='table1' style='font-family:Verdana;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
+    generatedHTML += "<p  class='table1' style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
+    generatedHTML += "<tr></tr>";
+    generatedHTML += "<tr></tr>";
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
-    generatedHTML += `<tr class='table-header' style="font-family:'Verdana';font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;">C 27.00 - Identification of the counterparty (LE 1)</tr>`;
-    generatedHTML += `<tr class='table-header' style="font-family: 'Verdana';font-size:10px;align-items: center;text-align: right;padding: 5px;">* All values reported are in millions </tr>`;
-    generatedHTML += "<tr></tr>";
     generatedHTML += "<tr class='table-header' >";
     generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>COUNTERPARTY</b><hr style="margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' colspan='15' style='height:25px;border: 1px solid black;background-color: #eee;font-family: Verdana;' ><b>ORIGINAL EXPOSURES</b></th>`;
@@ -280,9 +281,9 @@ looker.plugins.visualizations.add({
 
     const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350',];
     // First row is the header
-    generatedHTML += "<tr class='table-header'>";
+    generatedHTML += "<tr class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>";
     for (let i=0;i<header.length;i++) {
-      generatedHTML += `<th class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
+      generatedHTML += `<th class='table-header'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
     }
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
@@ -296,7 +297,7 @@ looker.plugins.visualizations.add({
       generatedHTML += "</tr>";
     }
     generatedHTML += "</table>";
-
+    generatedHTML += "</p>";
     this._container.innerHTML = generatedHTML; 
     this.addDownloadButtonListener();
 
