@@ -288,9 +288,9 @@ looker.plugins.visualizations.add({
 
     // Next rows are the data
     for (row of data) {
-      generatedHTML += "<tr class='table-row' style='border: 1px solid black;'>";
+      generatedHTML += "<tr class='table-row'>";
       for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-        generatedHTML += `<td class='table-cell'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+        generatedHTML += `<td class='table-cell' style='border: 1px solid black;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
       }
       generatedHTML += "</tr>";
     }
