@@ -213,7 +213,8 @@ looker.plugins.visualizations.add({
     `;
 
     generatedHTML += "<table class='table'>";
-    generatedHTML += "<tr class='table-header' style='font-family:Verdana;font-weight:bold;width:1000px;font-size:14px;align-items:center;text-align:left;border: 1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</tr>";
+    generatedHTML += "<tr style='font-family:Verdana;font-weight:bold;width:1000px;font-size:14px;text-align:left;border:1px solid black;padding:5px;background-color:#eee;'>C 27.00 - Identification of the counterparty (LE 1)</tr>";
+    generatedHTML += "<tr></tr>";
     generatedHTML += "<tr></tr>";
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header' >";
