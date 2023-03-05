@@ -279,9 +279,9 @@ looker.plugins.visualizations.add({
 
     const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350',];
     // First row is the header
-    generatedHTML += "<tr class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>";
+    generatedHTML += "<tr class='table-header'>";
     for (let i=0;i<header.length;i++) {
-      generatedHTML += `<th class='table-header'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
+      generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
     }
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
