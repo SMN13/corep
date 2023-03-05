@@ -279,16 +279,16 @@ looker.plugins.visualizations.add({
     // First row is the header
     generatedHTML += "<tr class='table-header'>";
     for (let i=0;i<header.length;i++) {
-      generatedHTML += `<th class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;font-size: 11px;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
+      generatedHTML += `<th class='table-header'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
     }
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
 
     // Next rows are the data
     for (row of data) {
-      generatedHTML += "<tr class='table-row'>";
+      generatedHTML += "<tr class='table-row' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>";
       for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-        generatedHTML += `<td class='table-cell' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;font-size: 11px;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+        generatedHTML += `<td class='table-cell'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
       }
       generatedHTML += "</tr>";
     }
