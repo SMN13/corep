@@ -212,8 +212,8 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
-    generatedHTML += "<p class='table' style='font-family:Verdana;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
-    generatedHTML += "<p  class='table' style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
+    generatedHTML += "<p style='font-family:Verdana;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
+    generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header' >";
