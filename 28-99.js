@@ -103,7 +103,7 @@ looker.plugins.visualizations.add({
         };
 
       // Create a new style element and set the default styles
-      var table = document.querySelector('table1');  
+      var table = document.querySelector('table');  
       // table.style.type = 'text/css';
       // table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
       // var rows = table.rows;
@@ -212,8 +212,8 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
-    generatedHTML += "<p class='table1' style='font-family:Verdana;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
-    generatedHTML += "<p  class='table1' style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
+    generatedHTML += "<p class='table' style='font-family:Verdana;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
+    generatedHTML += "<p  class='table' style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += "<tr></tr>";
     generatedHTML += "<tr></tr>";
     generatedHTML += "<table class='table'>";
