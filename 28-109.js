@@ -88,8 +88,9 @@ looker.plugins.visualizations.add({
     downloadButton.innerHTML = 'Download as Excel';
     downloadButton.className = 'download-button';
     downloadButton.addEventListener('click', (event) => {
-      var uri = 'application/vnd.ms-excel;'
-        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>' + tableHtml + '</table></body></html>'
+      var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
         , format = function (s, c) {
           const regex = /style="([^"]*)"/g;
           return s.replace(/{(\w+)}/g, function (m, p) {
@@ -115,7 +116,7 @@ looker.plugins.visualizations.add({
       }
 
       const XLSX = document.createElement('script');
-      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.16.9/dist/xlsx.full.min.js';
+      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
       document.head.appendChild(XLSX);
       var ctx = { Worksheet: '28', table: table.innerHTML }
       var xl = format(template, ctx);
@@ -211,7 +212,7 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
-    generatedHTML += "<p style='font-family:Verdana;width:100%;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
+    generatedHTML += "<p style='font-family:Verdana;width:2000px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1)</p>";
     generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
