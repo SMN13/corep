@@ -18,7 +18,7 @@ looker.plugins.visualizations.add({
     element.innerHTML = `
         <style>
           .table {
-            font-size: 11px;
+            font-size: ${config.font_size}px;
             border: 1px solid black;
             border-collapse: collapse;
             margin:auto;
@@ -61,67 +61,25 @@ looker.plugins.visualizations.add({
     meta.content = 'sandbox allow-downloads';
     document.head.appendChild(meta);
   },
+
   addDownloadButtonListener: function () {
-    const downloadButton = document.createElement('button');
+    const downloadButton = this._container.appendChild(document.createElement('button'));
     downloadButton.innerHTML = 'Download as Excel';
-    downloadButton.className = 'download-button';   
-    this._container.prepend(downloadButton);
+    downloadButton.className = 'download-button';
     downloadButton.addEventListener('click', (event) => {
-       var uri = 'data:application/vnd.ms-excel;base64,'
-       // , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-         , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-        //, base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-          , base64 = function(s) {
-            return window.btoa(unescape(encodeURIComponent(s)))
-          }
-        //, format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) };
-          ,format = function(s, c) {
-            return s.replace(/{(\w+)}/g, function(m, p) {
-              return c[p];
-            })
-          }
-      var toExcel = document.querySelector('table').innerHTML;
-      var ctx = {
-        worksheet: name || '',
-        table: toExcel
-      };
-      var link = document.createElement("a");
-      link.download = "export.xlsx";
-      link.href = uri + base64(format(template, ctx));
-      window.open(link.href);
-      //link.click();
-      /*const scr_require = document.createElement('script');
-      scr_require.src = 'https://requirejs.org/docs/release/2.3.5/minified/require.js';
-      document.head.appendChild(scr_require);
-      
-     // const { Storage } = require('@google-cloud/storage');
-     // const path = require('path');
-
-      // Create a new instance of the storage client
-      const storage = new Storage({
-        projectId: 'acn-gcp-fsi',
-        keyFilename: 'https://storage.cloud.google.com/acn-gcp-fsi/env/download.xls'
-      });
-
-      // Set the name of the bucket you want to upload to
-      const bucketName = 'acn-gcp-fsi';
-
-      // Set the path of the Excel file you want to upload
-      const filePath =  link.href;
-
-      // Upload the file to the specified bucket
-      async function uploadFile() {
-        const bucket = storage.bucket(bucketName);
-        const fileName = path.basename(filePath);
-        const file = bucket.file(fileName);
-
-        await file.save(filePath);
-
-        console.log(`File ${fileName} uploaded to ${bucketName}.`);
-      }
-
-      uploadFile();*/
-
+      var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) {
+          const regex = /style="([^"]*)"/g;
+          return s.replace(/{(\w+)}/g, function (m, p) {
+            const cellHtml = c[p];
+            const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
+              return 'style="' + p1 + '"';
+            });
+            return cellHtmlWithStyle;
+          });
+        };
       var table = document.querySelector('table');
       table.style.border = '1px solid black';
       table.style.fontSize = '11px';
@@ -137,36 +95,26 @@ looker.plugins.visualizations.add({
           var style = 'background-color:' + backgroundColor + ';' +
             'border: 1px solid black;' +
             'font-weight:' + fontWeight + ';' +
-            'font-size: 11pt;' +
             'font-family:' + fontFamily + ';' +
             'mso-number-format: "\ \@";' ;
           cell.setAttribute('style', style);
         }
       }
-      const scr = document.createElement('script');
-      scr.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
-      
-      //scr.src = "https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js";
-      document.head.appendChild(scr);
+      const XLSX = document.createElement('script');
+      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
+      document.head.appendChild(XLSX);
       var ctx = { Worksheet: '26', table: table.innerHTML }
       var xl = format(template, ctx);
+      var sheet = XLSX.xl['styles.xml'];
+      console.log("sheet :"+sheet);
+      var tagName = sheet.getElementsByTagName('sz');
+      console.log("font-size :"+tagName);
+      //window.location.href = uri + base64(format(template, ctx))
       const downloadUrl = uri + base64(xl);
       console.log(downloadUrl); // Prints the download URL to the console
-      window.open(downloadUrl);
-      //sleep(1000);
-      //window.open(downloadUrl);
-      //window.open(downloadUrl, "_blank");
-       //var link = document.createElement("a");
-       //link.download = 'sheet.xls';
-       //link.href = downloadUrl;
-       //document.body.appendChild(link);
-       //link.click();
-       //document.body.removeChild(link);
-       //delete link;
+      window.location.href = downloadUrl;
     });
   },
-  
-
 
   // Render in response to the data or settings changing
   updateAsync: function (data, element, config, queryResponse, details, done) {
@@ -179,7 +127,7 @@ looker.plugins.visualizations.add({
       this.addError({ title: "No Dimensions", message: "This chart requires dimensions." });
       return;
     }
-    
+
     /* Code to generate table
      * In keeping with the spirit of this little visualization plugin,
      * it's done in a quick and dirty way: piece together HTML strings.
@@ -267,7 +215,6 @@ looker.plugins.visualizations.add({
       }
     }
     generatedHTML += "</table>";
-    
     this._container.innerHTML = generatedHTML;
     this.addDownloadButtonListener();
 
