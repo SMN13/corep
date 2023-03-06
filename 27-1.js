@@ -242,7 +242,7 @@ looker.plugins.visualizations.add({
       // First row is the header
       generatedHTML += "<tr class='table-header'>";
       for (let i=0;i<header.length;i++) {
-        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>${header[i]}</th>`;
+        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:30px;font-size:11px'>${header[i]}</th>`;
       }
       generatedHTML += "</tr>";
       generatedHTML += "</thead>";
@@ -251,7 +251,7 @@ looker.plugins.visualizations.add({
       for (row of data) {
         generatedHTML += "<tr class='table-row'>";
         for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-          generatedHTML += `<td class='table-cell'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+          generatedHTML += `<td class='table-cell'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-size:11px'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
         }
         generatedHTML += "</tr>";
       }
