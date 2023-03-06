@@ -53,22 +53,23 @@ looker.plugins.visualizations.add({
             top: 0px; 
             z-index: 3;
           }
-          th:after {
-            content:''; 
-            position:absolute; 
-            left: 0; 
-            bottom: 0; 
-            width:100%; 
-            border-bottom: 1px solid rgba(0,0,0,0.12);
-          }
           th:before {
-            left: 0;
-            position: absolute;
             content: '';
+            top: 0;
+            left: 0;
+            border-top: 1px solid black;
+            position: absolute;
             width: 100%;
-            border-top: 1px solid #4c535b;
-            top: 102px;
-         }
+        }
+          th:after {
+          content:''; 
+          position:absolute; 
+          left: 0; 
+          bottom: 0; 
+          width:100%; 
+          border-bottom: 1px solid rgba(0,0,0,0.12);
+        }
+
          .div{
             overflow-y: auto;
             height: calc(100vh - 100px);
@@ -196,22 +197,22 @@ looker.plugins.visualizations.add({
             top: 0px; 
             z-index: 3;
           }
-          th:after {
-            content:''; 
-            position:absolute; 
-            left: 0; 
-            bottom: 0; 
-            width:100%; 
-            border-bottom: 1px solid rgba(0,0,0,0.12);
-         }
-        th:before {
-            left: 0;
-            position: absolute;
+          th:before {
             content: '';
+            top: 0;
+            left: 0;
+            border-top: 1px solid black;
+            position: absolute;
             width: 100%;
-            border-top: 1px solid #4c535b;
-            top: 102px;
         }
+          th:after {
+          content:''; 
+          position:absolute; 
+          left: 0; 
+          bottom: 0; 
+          width:100%; 
+          border-bottom: 1px solid rgba(0,0,0,0.12);
+        } 
         .div{
             overflow-y: auto;
             height: calc(100vh - 100px);
@@ -229,7 +230,7 @@ looker.plugins.visualizations.add({
       generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 20px; background-color: black;'></th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 120px;background-color: black;'></th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 119px;background-color: black;'></th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Type of Code</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Name</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>National Code</th>";
