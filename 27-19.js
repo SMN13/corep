@@ -53,23 +53,22 @@ looker.plugins.visualizations.add({
             top: 0px; 
             z-index: 3;
           }
-          th:before {
-            content: '';
-            top: 0;
-            left: 0;
-            border-top: 1px solid black;
-            position: absolute;
-            width: 100%;
-        }
           th:after {
-          content:''; 
-          position:absolute; 
-          left: 0; 
-          bottom: 0; 
-          width:100%; 
-          border-bottom: 1px solid rgba(0,0,0,0.12);
-        }
-
+            content:''; 
+            position:absolute; 
+            left: 0; 
+            bottom: 0; 
+            width:100%; 
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+          }
+          th:before {
+            left: 0;
+            position: absolute;
+            content: '';
+            width: 100%;
+            border-top: 1px solid #4c535b;
+            top: 102px;
+         }
          .div{
             overflow-y: auto;
             height: calc(100vh - 100px);
@@ -87,10 +86,11 @@ looker.plugins.visualizations.add({
     },
   
     addDownloadButtonListener: function () {
-        const downloadButton = this._container.appendChild(document.createElement('button'));
-        downloadButton.innerHTML = 'Download as Excel';
-        downloadButton.className = 'download-button';
-        downloadButton.addEventListener('click', (event) => {
+        const downloadButton = document.createElement('button');
+    downloadButton.innerHTML = 'Download as Excel';
+    downloadButton.className = 'download-button';   
+    this._container.prepend(downloadButton);
+    downloadButton.addEventListener('click', (event) => {
           var uri = 'data:application/vnd.ms-excel;base64,'
             , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
             , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
@@ -104,27 +104,18 @@ looker.plugins.visualizations.add({
                 return cellHtmlWithStyle;
               });
             };
-          var table = document.querySelector('table');
-          table.style.border = '1px solid black';
-          table.style.fontSize = '11px';
+         // Create a new style element and set the default styles
+        var table = document.querySelector('table');  
+      // table.style.type = 'text/css';
+      // table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
           var rows = table.rows;
-          for (var i = 0; i < rows.length; i++) {
-            var cells = rows[i].cells;
-            for (var j = 0; j < cells.length; j++) {
-              var cell = cells[j];
-              var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-              var fontWeight = window.getComputedStyle(cell).fontWeight;
-              var fontFamily = window.getComputedStyle(cell).fontFamily;
-              var fontSize = window.getComputedStyle(cell).fontSize;
-              var style = 'background-color:' + backgroundColor + ';' +
-                'border: 1px solid black;' +
-                'font-weight:' + fontWeight + ';' +
-                'font-size: 11pt;' +
-                'font-family:' + fontFamily + ';' +
-                'mso-number-format: "\ \@";' ;
-              cell.setAttribute('style', style);
-            }
-          }
+        for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].cells;
+        for (var j = 0; j < cells.length; j++) {
+          var cell = cells[j];
+        //   cell.setAttribute('style', style);
+        }
+        }
           const XLSX = document.createElement('script');
           XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
           document.head.appendChild(XLSX);
@@ -197,22 +188,22 @@ looker.plugins.visualizations.add({
             top: 0px; 
             z-index: 3;
           }
-          th:before {
-            content: '';
-            top: 0;
-            left: 0;
-            border-top: 1px solid black;
-            position: absolute;
-            width: 100%;
-        }
           th:after {
-          content:''; 
-          position:absolute; 
-          left: 0; 
-          bottom: 0; 
-          width:100%; 
-          border-bottom: 1px solid rgba(0,0,0,0.12);
-        } 
+            content:''; 
+            position:absolute; 
+            left: 0; 
+            bottom: 0; 
+            width:100%; 
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+         }
+        th:before {
+            left: 0;
+            position: absolute;
+            content: '';
+            width: 100%;
+            border-top: 1px solid #4c535b;
+            top: 102px;
+        }
         .div{
             overflow-y: auto;
             height: calc(100vh - 100px);
@@ -227,10 +218,10 @@ looker.plugins.visualizations.add({
       generatedHTML += "<table class='table'>";
       generatedHTML += "<thead class='thead'>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 20px; background-color: black;'></th>";
+      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;width: 48.78%;height: 0.6px;top: 27px;position: absolute;left: 0;background-color: red;'></th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 119px;background-color: black;'></th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 119px;background-color: blue;'></th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Type of Code</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Name</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>National Code</th>";
@@ -244,7 +235,7 @@ looker.plugins.visualizations.add({
       // First row is the header
       generatedHTML += "<tr class='table-header'>";
       for (let i=0;i<header.length;i++) {
-        generatedHTML += `<th class='table-header'>${header[i]}</th>`;
+        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}</th>`;
       }
       generatedHTML += "</tr>";
       generatedHTML += "</thead>";
@@ -253,7 +244,7 @@ looker.plugins.visualizations.add({
       for (row of data) {
         generatedHTML += "<tr class='table-row'>";
         for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-          generatedHTML += `<td class='table-cell'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+          generatedHTML += `<td class='table-cell' style='border: 1px solid black;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
         }
         generatedHTML += "</tr>";
       }
