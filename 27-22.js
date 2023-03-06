@@ -113,7 +113,7 @@ looker.plugins.visualizations.add({
         var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
           var cell = cells[j];
-        //   cell.setAttribute('style', style);
+          cell.setAttribute('style');
         }
         }
           const XLSX = document.createElement('script');
@@ -218,7 +218,7 @@ looker.plugins.visualizations.add({
       generatedHTML += "<table class='table'>";
       generatedHTML += "<thead class='thead'>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;border: 1px solid black;background-color: #eee;font-family: Verdana;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION</th>";
+      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;border: 1px solid black;background-color: #eee;font-family: Verdana;width: -webkit-fill-available; position: absolute;'>COUNTERPARTY IDENTIFICATION</th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code</th>";
