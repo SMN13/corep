@@ -226,7 +226,7 @@ looker.plugins.visualizations.add({
       generatedHTML += "<table class='table'>";
       generatedHTML += "<thead class='thead'>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;height: 1px;position: absolute;width: 100%; background-color: red;'></th>";
+      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;height: 19px;position: absolute;width: 100%; background-color: red;'></th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 100%;top: 133.5px;background-color: black;'></th>";
