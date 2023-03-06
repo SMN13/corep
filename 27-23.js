@@ -112,9 +112,10 @@ looker.plugins.visualizations.add({
         for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
-          var cell = cells[j];
-          cell.setAttribute('style');
-        }
+            generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[j]}</th>`;
+          }
+        //   cell.setAttribute('style');
+         }
         }
           const XLSX = document.createElement('script');
           XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
