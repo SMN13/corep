@@ -118,7 +118,7 @@ looker.plugins.visualizations.add({
       const XLSX = document.createElement('script');
       XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
       document.head.appendChild(XLSX);
-      var ctx = { Worksheet: '28', table: table.innerHTML }
+      var ctx = { Worksheet: '29', table: table.innerHTML }
       var xl = format(template, ctx);
       const downloadUrl = uri + base64(xl);
       console.log(downloadUrl); // Prints the download URL to the console
@@ -212,8 +212,8 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
-    generatedHTML += "<p style='font-family:Verdana;width:6000px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 28.00 - Exposures in the non-trading and trading book (LE 2)</p>";
-    generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";    generatedHTML += "<table class='table'>";
+    generatedHTML += "<p style='font-family:Verdana;width:4100px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 29.00 - Detail of the exposures to individual clients within groups of connected clients (LE 3) </p>";
+    generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
     generatedHTML += "<tr class='table-header' >";
@@ -227,11 +227,11 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Code<stylhr e="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Group or individual</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Total original exposure</b></th>`;
-    generatedHTML += `<th class='table-header' colspan='14' style='height:25px;color:#eee;'>t<hr style="background-color: #eee;margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='14' style='height:25px;background-color: #eee;color: #eee'>t<hr style="background-color: #eee;margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Funded credit protection other than substitution effect</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Real estate</th>`;
@@ -277,7 +277,7 @@ looker.plugins.visualizations.add({
 
 
 
-    const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350',];
+    const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350'];
     // First row is the header
     generatedHTML += "<tr class='table-header'>";
     for (let i=0;i<header.length;i++) {
@@ -286,6 +286,7 @@ looker.plugins.visualizations.add({
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
 
+    
     // Next rows are the data
     for (row of data) {
       generatedHTML += "<tr class='table-row'>";
