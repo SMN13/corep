@@ -228,21 +228,21 @@ looker.plugins.visualizations.add({
       generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION</th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Type of Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Name</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>National Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Residence of the Counterparty</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Sector of the Counterparty</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>NACE Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;font-size:11px'>Type of Counterparty</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Code</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Type of Code</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Name</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>National Code</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Residence of the Counterparty</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Sector of the Counterparty</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>NACE Code</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:100px;'>Type of Counterparty</th>";
       generatedHTML += "</tr>";
      
       const header=['011','015','021','035','040','050','060','070'];
       // First row is the header
       generatedHTML += "<tr class='table-header'>";
       for (let i=0;i<header.length;i++) {
-        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}</th>`;
+        generatedHTML += `<th class='table-header' >${header[i]}</th>`;
       }
       generatedHTML += "</tr>";
       generatedHTML += "</thead>";
