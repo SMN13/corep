@@ -68,54 +68,46 @@ looker.plugins.visualizations.add({
     downloadButton.className = 'download-button';   
     this._container.prepend(downloadButton);
     downloadButton.addEventListener('click', (event) => {
-      var uri = 'data:application/vnd.ms-excel;base64,'
-        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-        , format = function (s, c) {
-          const regex = /style="([^"]*)"/g;
-          return s.replace(/{(\w+)}/g, function (m, p) {
-            const cellHtml = c[p];
-            const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
-              return 'style="' + p1 + '"';
-            });
-            return cellHtmlWithStyle;
-          });
-        };
-      var table = document.querySelector('table');
-      table.style.border = '1px solid black';
-      table.style.fontSize = '11px';
+          var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) {
+              const regex = /style="([^"]*)"/g;
+              return s.replace(/{(\w+)}/g, function (m, p) {
+                const cellHtml = c[p];
+                const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
+                  return 'style="' + p1 + '"';
+                });
+                return cellHtmlWithStyle;
+              });
+            };
+         // Create a new style element and set the default styles
+        var table = document.querySelector('table');  
+      // table.style.type = 'text/css';
+      // table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
+         
       var rows = table.rows;
-      for (var i = 0; i < rows.length; i++) {
+        for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
           var cell = cells[j];
-          var backgroundColor = window.getComputedStyle(cell).backgroundColor;
-          var fontWeight = window.getComputedStyle(cell).fontWeight;
-          var fontFamily = window.getComputedStyle(cell).fontFamily;
-          var fontSize = window.getComputedStyle(cell).fontSize;
-          var style = 'background-color:' + backgroundColor + ';' +
-            'border: 1px solid black;' +
-            'font-weight:' + fontWeight + ';' +
-            'font-family:' + fontFamily + ';' +
-            'mso-number-format: "\ \@";' ;
-          cell.setAttribute('style', style);
+          
+        //   cell.setAttribute('style');
+         }
         }
-      }
-      const XLSX = document.createElement('script');
-      XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
-      document.head.appendChild(XLSX);
-      var ctx = { Worksheet: '26', table: table.innerHTML }
-      var xl = format(template, ctx);
-      var sheet = XLSX.xl['styles.xml'];
-      console.log("sheet :"+sheet);
-      var tagName = sheet.getElementsByTagName('sz');
-      console.log("font-size :"+tagName);
-      //window.location.href = uri + base64(format(template, ctx))
-      const downloadUrl = uri + base64(xl);
-      console.log(downloadUrl); // Prints the download URL to the console
-      window.location.href = downloadUrl;
-    });
-  },
+          const XLSX = document.createElement('script');
+          XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
+          document.head.appendChild(XLSX);
+          var ctx = { Worksheet: '26', table: table.innerHTML }
+          var xl = format(template, ctx);
+          const downloadUrl = uri + base64(xl);
+          console.log(downloadUrl); // Prints the download URL to the console
+          //sleep(1000);
+          //window.open(downloadUrl);
+          window.open(downloadUrl, "_blank");
+          //setTimeout(window.open(downloadUrl, 'Download'),1000);
+        });
+      },
 
   // Render in response to the data or settings changing
   updateAsync: function (data, element, config, queryResponse, details, done) {
