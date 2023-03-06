@@ -182,12 +182,12 @@ looker.plugins.visualizations.add({
     generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += `<table class='table'>`;
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header' rowspan='2' colspan='2' > </th>`;
+    generatedHTML += `<th class='table-header' rowspan='2' colspan='2' style='border: 1px solid black;background-color: #eee;color: #eee'>t</th>`;
     generatedHTML += `<th class='table-header' rowspan='1' colspan='${k}' style='height: 40px;border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Applicable<br>limit</br></b></th>`;
     generatedHTML += "</tr>";
 
     generatedHTML += "<tr class='table-header'>";
-    generatedHTML += `<th class='table-header text-cell' colspan='${k}' style='font-size: 10px;border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'> 010 </th>`;
+    generatedHTML += `<th class='table-header text-cell' colspan='${k}' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'> 010 </th>`;
     generatedHTML += "</tr>";
 
     const header = ['Non institutions', 'Institutions', 'Institutions in %', 'Globally Systemic Important Institutions (G-SIIs)'];
@@ -200,11 +200,11 @@ looker.plugins.visualizations.add({
       // Look through each field (i.e. row of data)
       for (field of queryResponse.fields[column_type]) {
         // First column is the label
-        generatedHTML += `<tr><th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header1[i]}</th>`;
-        generatedHTML += `<th class='table-header' style='text-align: left; padding: 5px;width:280px'>${header[i]}</th>`;
+        generatedHTML += `<tr><th class='table-header' style='border: 1px solid black;width:35px;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header1[i]}</th>`;
+        generatedHTML += `<th class='table-header' style='text-align: left; padding: 5px;width:350px;border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}</th>`;
         // Next columns are the data
         for (row of data) {
-          generatedHTML += `<td class='table-cell'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`
+          generatedHTML += `<td class='table-cell' style='border: 1px solid black;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`
         }
         generatedHTML += '</tr>';
         i++;
