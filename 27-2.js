@@ -251,7 +251,7 @@ looker.plugins.visualizations.add({
       for (row of data) {
         generatedHTML += "<tr class='table-row'>";
         for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-          generatedHTML += `<td class='table-cell'  style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-size:11px'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+          generatedHTML += `<td class='table-cell' >${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
         }
         generatedHTML += "</tr>";
       }
