@@ -212,7 +212,7 @@ looker.plugins.visualizations.add({
       </style>
     `;
 
-    generatedHTML += "<p style='font-family:Verdana;width:4300px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 29.00 - Detail of the exposures to individual clients within groups of connected clients (LE 3) </p>";
+    generatedHTML += "<p style='font-family:Verdana;width:4180px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 29.00 - Detail of the exposures to individual clients within groups of connected clients (LE 3) </p>";
     generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
     generatedHTML += "<table class='table'>";
     generatedHTML += "<thead class='thead'>";
@@ -231,7 +231,7 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Group or individual</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Transactions where there is an exposure to underlying assets</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Total original exposure</b></th>`;
-    generatedHTML += `<th class='table-header' colspan='14' style='height:25px;background-color: #eee;font-family: Verdana;color: #eee'>t<hr style="background-color: #eee;margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='14' style='height:25px;background-color: #eee;color: #eee'>t<hr style="background-color: #eee;margin: 0;position: absolute;height: 0.6px;top: 55px;width:37.89%;background-color: #262d33;left: 442px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='6' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Substitution effect of eligible credit risk mitigation techniques</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Funded credit protection other than substitution effect</th>`;
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Real estate</th>`;
@@ -276,23 +276,31 @@ looker.plugins.visualizations.add({
     generatedHTML += "</tr>";
 
 
-
-    const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350',];
+    // Loop through the different types of column types looker exposes
+    let i = 0;
+    const header=['010','020','030','040','050','060','070','080','090','100','110','120','130','140','150','160','170','180','190','200','210','220','230','240','250','260','270','280','290','300','310','320','330','340','350'];
     // First row is the header
-    generatedHTML += "<tr class='table-header'>";
-    for (let i=0;i<header.length;i++) {
-      generatedHTML += `<th class='table-header'>${header[i]}<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 193px;background-color: black;"></th>`;
-    }
+    for (column_type of ["dimension_like", "measure_like", "table_calculations"]) {
+ 
+      // Look through each field (i.e. row of data)
+      for (field of queryResponse.fields[column_type]) {
+        // First column is the label
+        generatedHTML += `<tr><th class='table-header'>${header[i]}</th>`;
+        generatedHTML += `<th class='table-header' sstyle='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}</th>`;
+   
     generatedHTML += "</tr>";
     generatedHTML += "</thead>";
 
-    // Next rows are the data
+   // Next rows are the data
     for (row of data) {
       generatedHTML += "<tr class='table-row'>";
       for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
         generatedHTML += `<td class='table-cell' style='border: 1px solid black;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
       }
       generatedHTML += "</tr>";
+    }
+    i++;
+      }
     }
     generatedHTML += "</table>"; 
     this._container.innerHTML = generatedHTML; 
