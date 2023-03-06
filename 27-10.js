@@ -226,12 +226,12 @@ looker.plugins.visualizations.add({
       generatedHTML += "<table class='table'>";
       generatedHTML += "<thead class='thead'>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION</th>";
+      generatedHTML += "<th class='table-header' colspan='8' style='font-weight: bold;height:19px;width: -webkit-fill-available; position: absolute'>COUNTERPARTY IDENTIFICATION<hr style='margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;'></th>";
       generatedHTML += "</tr>";
       generatedHTML += "<tr class='table-header'>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Type of Code</th>";
-      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Name</th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;'></th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Type of Code<hr style='margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;'></th>";
+      generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Name<hr style='margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;'></th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>National Code</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Residence of the Counterparty</th>";
       generatedHTML += "<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;height:100px;'>Sector of the Counterparty</th>";
@@ -261,5 +261,6 @@ looker.plugins.visualizations.add({
       this._container.innerHTML = generatedHTML;
       this.addDownloadButtonListener();
       done();
+      
     }
   });
