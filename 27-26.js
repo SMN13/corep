@@ -108,12 +108,10 @@ looker.plugins.visualizations.add({
         var table = document.querySelector('table');  
       // table.style.type = 'text/css';
       // table.style.innerHTML = 'td, th { background-color: white; border: 1px solid black; font-weight: normal; font-size: 11pt; font-family: Calibri; mso-number-format: "\\\@"; }';
-      const header=['011','015','021','035','040','050','060','070'];
-      // First row is the header
-       
+         
       var rows = table.rows;
         for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].header;
+        var cells = rows[i].cells;
         for (var j = 0; j < cells.length; j++) {
           var cell = cells[j];
           
