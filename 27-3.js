@@ -220,7 +220,7 @@ looker.plugins.visualizations.add({
         }
         </style>
       `;
-      generatedHTML += "<p style='font-family:Verdana;width:4100px;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1) </p>";
+      generatedHTML += "<p style='font-family:Verdana;width:100%;font-weight:bold;font-size:14px;align-items:center;text-align:left;border:1px solid black;padding: 5px;background-color: #eee;'>C 27.00 - Identification of the counterparty (LE 1) </p>";
       generatedHTML += "<p style='font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;'>* All values reported are in millions </p>";
       generatedHTML += "<table class='table'>";
       generatedHTML += "<thead class='thead'>";
@@ -242,7 +242,7 @@ looker.plugins.visualizations.add({
       // First row is the header
       generatedHTML += "<tr class='table-header'>";
       for (let i=0;i<header.length;i++) {
-        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;height:30px;font-size:11px'>${header[i]}</th>`;
+        generatedHTML += `<th class='table-header' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>${header[i]}</th>`;
       }
       generatedHTML += "</tr>";
       generatedHTML += "</thead>";
