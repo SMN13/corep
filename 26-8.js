@@ -76,7 +76,7 @@ looker.plugins.visualizations.add({
               return s.replace(/{(\w+)}/g, function (m, p) {
                 const cellHtml = c[p];
                 const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
-                  return p1 + '"';
+                  return 'style="' + p1 + '"';
                 });
                 return cellHtmlWithStyle;
               });
