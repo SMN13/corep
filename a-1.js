@@ -96,7 +96,15 @@ looker.plugins.visualizations.add({
 
     
      exportPDF: function (id) {
-        var doc = new jsPDF('p', 'pt', 'a4');
+        const downloadButton = document.createElement('img');
+        downloadButton.src = "https://cdn.jsdelivr.net/gh/Spoorti-Gandhad/AGBG-Assets@main/downloadAsExcel.jfif";
+        downloadButton.setAttribute('height', '25px');
+        downloadButton.setAttribute('width', '25px');
+        downloadButton.setAttribute('title', 'Download As Excel'); 
+        downloadButton.style.marginLeft='90%';
+        this._container.prepend(downloadButton);
+        downloadButton.addEventListener('click', (event) => {
+         var doc = new jsPDF('p', 'pt', 'a4');
         //A4 - 595x842 pts
         //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
     
@@ -132,8 +140,12 @@ looker.plugins.visualizations.add({
                 //          this allow the insertion of new lines after html
                 doc.save('Test.pdf');
             }, margins);
-    },
-  
+            console.log(downloadUrl); // Prints the download URL to the console
+            //sleep(1000);
+            window.open(downloadUrl, "_blank");
+            //const newTab=window.open(downloadUrl, "_blank");
+          });
+        },
       
   
   
