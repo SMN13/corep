@@ -93,7 +93,7 @@ looker.plugins.visualizations.add({
       
     },
   
-   
+    
      exportPDF: function (id) {
         const downloadButton = document.createElement('img');
         downloadButton.src = "https://cdn.jsdelivr.net/gh/Spoorti-Gandhad/AGBG-Assets@main/downloadAsExcel.jfif";
@@ -109,7 +109,7 @@ looker.plugins.visualizations.add({
         jsPdfAutoTable.src = "https://unpkg.com/jspdf-autotable";
         document.head.appendChild(jsPdfAutoTable);
         downloadButton.addEventListener('click', (event) => {
-         var doc = new jsPDF('p', 'pt', 'a4');
+         var doc = new jsPdfCdn('p', 'pt', 'a4');
         //A4 - 595x842 pts
         //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
     
