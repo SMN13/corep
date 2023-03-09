@@ -93,16 +93,21 @@ looker.plugins.visualizations.add({
       
     },
   
-
-    
+   
      exportPDF: function (id) {
         const downloadButton = document.createElement('img');
         downloadButton.src = "https://cdn.jsdelivr.net/gh/Spoorti-Gandhad/AGBG-Assets@main/downloadAsExcel.jfif";
         downloadButton.setAttribute('height', '25px');
         downloadButton.setAttribute('width', '25px');
-        downloadButton.setAttribute('title', 'Download As Excel'); 
+        downloadButton.setAttribute('title', 'Download As Pdf'); 
         downloadButton.style.marginLeft='90%';
         this._container.prepend(downloadButton);
+        const jsPdfCdn = document.createElement('script');
+        jsPdfCdn.src = "https://unpkg.com/jspdf";
+        document.head.appendChild(jsPdfCdn);
+        const jsPdfAutoTable = document.createElement('script');
+        jsPdfAutoTable.src = "https://unpkg.com/jspdf-autotable";
+        document.head.appendChild(jsPdfAutoTable);
         downloadButton.addEventListener('click', (event) => {
          var doc = new jsPDF('p', 'pt', 'a4');
         //A4 - 595x842 pts
