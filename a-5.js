@@ -1,4 +1,4 @@
-
+import jsPDF from 'jspdf';
 
 looker.plugins.visualizations.add({
     // Id and Label are legacy properties that no longer have any function besides documenting
@@ -102,14 +102,14 @@ looker.plugins.visualizations.add({
         downloadButton.setAttribute('title', 'Download As Pdf'); 
         downloadButton.style.marginLeft='90%';
         this._container.prepend(downloadButton);
-        const jspdf = document.createElement('script');
-        jspdf.src = "https://unpkg.com/jspdf";
-        document.head.appendChild(jspdf);
+        const cdn = document.createElement('script');
+        cdn.src = "https://unpkg.com/jspdf";
+        document.head.appendChild(cdn);
         const jsPdfAutoTable = document.createElement('script');
         jsPdfAutoTable.src = "https://unpkg.com/jspdf-autotable";
         document.head.appendChild(jsPdfAutoTable);
         downloadButton.addEventListener('click', (event) => {
-         var doc = new jspdf.jsPDF();
+         var doc = new jsPDF();
         //A4 - 595x842 pts
         //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
     
