@@ -1,4 +1,4 @@
-import jsPDF from 'jspdf';
+
 
 looker.plugins.visualizations.add({
     // Id and Label are legacy properties that no longer have any function besides documenting
