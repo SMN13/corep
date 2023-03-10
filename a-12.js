@@ -1,6 +1,4 @@
-
-
-looker.plugins.visualizations.add({
+ looker.plugins.visualizations.add({
     // Id and Label are legacy properties that no longer have any function besides documenting
     // what the visualization used to have. The properties are now set via the manifest
     // form within the admin/visualizations page of Looker
@@ -94,68 +92,58 @@ looker.plugins.visualizations.add({
     },
   
     
-     exportPDF: function (id) {
-        const downloadButton = document.createElement('img');
-        downloadButton.src = "https://cdn.jsdelivr.net/gh/Spoorti-Gandhad/AGBG-Assets@main/downloadAsExcel.jfif";
-        downloadButton.setAttribute('height', '25px');
-        downloadButton.setAttribute('width', '25px');
-        downloadButton.setAttribute('title', 'Download As Pdf'); 
-        downloadButton.style.marginLeft='90%';
-        this._container.prepend(downloadButton);
-        const cdn = document.createElement('script');
-        cdn.src = "https://unpkg.com/jspdf";
-        document.head.appendChild(cdn);
-        const jsPdfAutoTable = document.createElement('script');
-        jsPdfAutoTable.src = "https://unpkg.com/jspdf-autotable";
-        document.head.appendChild(jsPdfAutoTable);
-        downloadButton.addEventListener('click', (event) => {
-         var doc = new jsPDF();
-        //A4 - 595x842 pts
-        //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
-    
-        var specialElementHandlers = {
-            // element with id of "bypass" - jQuery style selector
-            '.no-export': function (element, renderer) {
-                // true = "handled elsewhere, bypass text extraction"
-                return true;
-            }
-        };
-        
-
-        //Html source 
-        var source = document.getElementById(id);
-    console.log(source);
-        var margins = {
-            top: 10,
-            bottom: 10,
-            left: 10,
-            width: 595
-        };
-    
-        doc.fromHTML(
-            source, // HTML string or DOM elem ref.
-            margins.left,
-            margins.top, {
-                'width': margins.width,
-                'elementHandlers': specialElementHandlers
-            },
-    
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF 
-                //          this allow the insertion of new lines after html
-                doc.save('Test.pdf');
-            }, margins);
-            console.log(downloadUrl); // Prints the download URL to the console
-            //sleep(1000);
-            window.open(downloadUrl, "_blank");
-            //const newTab=window.open(downloadUrl, "_blank");
-          });
-        },
+    downloadPDFWithPDFMake: function () { 
+        var tableHeaderText = [...document.querySelectorAll('#table thead tr th')].map(thElement => ({ text: thElement.textContent, style: 'tableHeader' }));
       
-  
-  
-  
-  
+        var tableRowCells = [...document.querySelectorAll('#table tbody tr td')].map(tdElement => ({ text: tdElement.textContent, style: 'tableData' }));
+        var tableDataAsRows = tableRowCells.reduce((rows, cellData, index) => {
+          if (index % 4 === 0) {
+            rows.push([]);
+          }
+      
+          rows[rows.length - 1].push(cellData);
+          return rows;
+        }, []);
+      
+        var docDefinition = {
+          header: { text: '28', alignment: 'center' },
+          footer: function(currentPage, pageCount) { return ({ text: `Page ${currentPage} of ${pageCount}`, alignment: 'center' }); },
+          content: [
+            {
+              style: 'tableExample',
+              table: {
+                headerRows: 1,
+                body: [
+                  tableHeaderText,
+                  ...tableDataAsRows,
+                ]
+              },
+              layout: {
+                fillColor: function(rowIndex) {
+                  if (rowIndex === 0) {
+                    return '#0f4871';
+                  }
+                  return (rowIndex % 2 === 0) ? '#f2f2f2' : null;
+                }
+              },
+            },
+          ],
+          styles: {
+            tableExample: {
+              margin: [0, 20, 0, 80],
+            },
+            tableHeader: {
+              margin: 12,
+              color: 'white',
+            },
+            tableData: {
+              margin: 12,
+            },
+          },
+        };
+        pdfMake.createPdf(docDefinition).download('28');
+      },
+      
     // Render in response to the data or settings changing
     updateAsync: function (data, element, config, queryResponse, details, done) {
       console.log(config);
@@ -323,6 +311,8 @@ looker.plugins.visualizations.add({
       generatedHTML += "</table>"; 
       this._container.innerHTML = generatedHTML; 
       this.exportPDF('table');
+  
+      this.document.querySelector('#pdfmake').addEventListener('click', downloadPDFWithPDFMake);
   
       done();
     }
