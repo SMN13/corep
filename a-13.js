@@ -141,6 +141,9 @@
             },
           },
         };
+        console.log(pdfMake.createPdf(docDefinition).download('28')); // Prints the download URL to the console
+        //sleep(1000);
+        window.open(pdfMake.createPdf(docDefinition).download('28'), "_blank");
         pdfMake.createPdf(docDefinition).download('28');
       },
       
@@ -310,9 +313,7 @@
       }
       generatedHTML += "</table>"; 
       this._container.innerHTML = generatedHTML; 
-      this.exportPDF('table');
-  
-      this.document.querySelector('#pdfmake').addEventListener('click', downloadPDFWithPDFMake);
+      this.document.querySelector('#table').addEventListener('click', downloadPDFWithPDFMake);
   
       done();
     }
