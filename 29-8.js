@@ -84,10 +84,13 @@ looker.plugins.visualizations.add({
   },
 
   addDownloadButtonListener: function () {
-    const downloadButton = document.createElement('button');
-    downloadButton.innerHTML = 'Download as Excel';
-    downloadButton.className = 'download-button';   
-    this._container.prepend(downloadButton);
+    const downloadButton = document.createElement('img');
+    downloadButton.src = "https://cdn.jsdelivr.net/gh/Spoorti-Gandhad/AGBG-Assets@main/downloadAsExcel.jfif";
+    downloadButton.setAttribute('height', '25px');
+    downloadButton.setAttribute('width', '25px');
+    downloadButton.setAttribute('title', 'Download As Excel'); 
+    downloadButton.style.marginLeft='90%';
+    this._container.prepend(downloadButton);
     downloadButton.addEventListener('click', (event) => {
       var uri = 'data:application/vnd.ms-excel;base64,'
         , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
@@ -119,7 +122,9 @@ looker.plugins.visualizations.add({
       const XLSX = document.createElement('script');
       XLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js';
       document.head.appendChild(XLSX);
-      var ctx = { Worksheet: '29', table: table.innerHTML }
+      var ctx = { Worksheet: '29', table: table.innerHTML };
+      var ctx = { Worksheet: '29', table: "<tr class='table-header'><th class='table-header' rowspan='1' colspan='100' style='align-items: left;text-align: left; height: 40px;border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>C 29.00 - Detail of the exposures to individual clients within groups of connected clients (LE 3)</b></th></tr><tr class='table-header'><th class='table-header' rowspan='1' colspan='3' style='background-color:none !important;font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;color:grey;font-weight:normal;'>* All values reported are in millions </th></tr>"+table.innerHTML }
+          
       var xl = format(template, ctx);
       const downloadUrl = uri + base64(xl);
       console.log(downloadUrl); // Prints the download URL to the console
@@ -222,10 +227,10 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' colspan='15' style='height:25px;border: 1px solid black;background-color: #eee;font-family: Verdana;' ><b>ORIGINAL EXPOSURES</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='5' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Value adjustments and provisions</th>`;
     generatedHTML += `<th class='table-header' rowspan='5' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Exposures deducted from CET 1 or Additional Tier 1 items</th>`;
-    generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value before application of exemptions and CRM </b><hr style="margin: 0;position: absolute;width: 25.37%;top: 83px;left: 2260px;background-color: black;height: 0.6px;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value before application of exemptions and CRM </b><hr style="margin: 0;position: absolute;width: 25.37%;top: 82px;left: 2260px;background-color: black;height: 0.6px;"></th>`;
     generatedHTML += `<th class='table-header' colspan='8' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>ELIGIBLE CREDIT RISK MITIGATION (CRM) TECHNIQUES</b><hr style="height: 0.6px;top: 27px;position: absolute;left: 2603px;width: 23.85%;margin: 0;background-color: black;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='5' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Amounts exempted</th>`;
-    generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 83px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
+    generatedHTML += `<th class='table-header' rowspan='3' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Exposure value after application of exemptions and CRM</b><hr style="margin: 0;height: 0.6px;top: 82px;position: absolute;width: 8.4%;left: 3711.5px;background-color: black;"></th>`;
     generatedHTML += "</tr>";
     generatedHTML += "<tr class='table-header'>";
     generatedHTML += `<th class='table-header' rowspan='4' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Code<hr style="margin: 0;height: 0.6px;position: absolute;width: 100%;left: 0;top: 177px;background-color: black;"></th>`;
@@ -248,18 +253,18 @@ looker.plugins.visualizations.add({
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 133.5px;background-color: black;left: 956px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.52%;top: 134px;background-color: black;left: 956px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.49%;top: 133.5px;background-color: black;left: 1644.5px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.49%;top: 134px;background-color: black;left: 1644.5px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Total</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'><i>Of which: Non-trading book</i></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>% of Tier 1 capital </th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Debt instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Equity instruments</th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Derivatives</th>`;
-    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 133.5px;background-color: black;left: 3024.7px;"></th>`;
+    generatedHTML += `<th class='table-header' colspan='3' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>(-) Off balance sheet items<hr style="margin: 0;height: 0.6px;position: absolute;width: 6.5%;top: 134px;background-color: black;left: 3024.7px;"></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>Total</b></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'><i>Of which: Non-trading book</i></th>`;
     generatedHTML += `<th class='table-header' rowspan='2' style='border: 1px solid black;background-color: #eee;font-family: Verdana;font-weight: normal;'>% of Tier 1 capital</th>`;
@@ -292,7 +297,7 @@ looker.plugins.visualizations.add({
     for (row of data) {
       generatedHTML += "<tr class='table-row'>";
       for (field of queryResponse.fields.dimensions.concat(queryResponse.fields.measures)) {
-        generatedHTML += `<td class='table-cell' style='border: 1px solid black;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
+        generatedHTML += `<td class='table-cell' style='border: 1px solid black;font-size: 11px;'>${LookerCharts.Utils.htmlForCell(row[field.name])}</td>`;
       }
       generatedHTML += "</tr>";
     }
