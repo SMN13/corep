@@ -188,6 +188,7 @@ looker.plugins.visualizations.add({
          .table-row {
           border: 1px solid black;
           border-collapse: collapse;
+          font-size: 11px;
         }
         .thead{
           position: sticky;
