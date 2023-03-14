@@ -94,19 +94,7 @@ looker.plugins.visualizations.add({
   downloadButton.style.marginLeft='90%';
   this._container.prepend(downloadButton);
   downloadButton.addEventListener('click', (event) => {
-        var uri = 'data:application/vnd.ms-excel;base64,'
-          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{Worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-          , format = function (s, c) {
-            const regex = /style="([^"]*)"/g;
-            return s.replace(/{(\w+)}/g, function (m, p) {
-              const cellHtml = c[p];
-              const cellHtmlWithStyle = cellHtml.replace(regex, function (m, p1) {
-                return 'style="' + p1 + '"';
-              });
-              return cellHtmlWithStyle;
-            });
-          };
+        
        // Create a new style element and set the default styles
       var table = document.querySelector('table');  
     // table.style.type = 'text/css';
@@ -128,7 +116,7 @@ looker.plugins.visualizations.add({
         var ctx = { Worksheet: '27', table: "<tr class='table-header'><th class='table-header' rowspan='1' colspan='100' style='align-items: left;text-align: left; height: 40px;border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>C 27.00 - Identification of the counterparty (LE 1)</b></th></tr><tr class='table-header'><th class='table-header' rowspan='1' colspan='3' style='background-color:none !important;font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;color:grey;font-weight:normal;'>* All values reported are in millions </th></tr>"+table.innerHTML }
        
         var xl = format(template, ctx);
-        const downloadUrl = uri + base64(xl);
+        const downloadUrl = xl;
         console.log(downloadUrl); // Prints the download URL to the console
         //sleep(1000);
         //window.open(downloadUrl);
