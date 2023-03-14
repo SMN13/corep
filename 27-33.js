@@ -111,7 +111,7 @@ looker.plugins.visualizations.add({
       }
         const XLSX = document.createElement('script');
         XLSX.src = 'https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js';
-        document.head.appendChild(XLSX);
+        document.head.appendChild(XLSX.src);
         //var ctx = { Worksheet: '27', table: table.innerHTML };
         var ctx = { Worksheet: '27', table: "<tr class='table-header'><th class='table-header' rowspan='1' colspan='100' style='align-items: left;text-align: left; height: 40px;border: 1px solid black;background-color: #eee;font-family: Verdana;'><b>C 27.00 - Identification of the counterparty (LE 1)</b></th></tr><tr class='table-header'><th class='table-header' rowspan='1' colspan='3' style='background-color:none !important;font-family:Verdana;font-size:10px;align-items: center;text-align: right;padding: 5px;color:grey;font-weight:normal;'>* All values reported are in millions </th></tr>"+table.innerHTML }
        
